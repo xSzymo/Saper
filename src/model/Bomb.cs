@@ -6,9 +6,7 @@ namespace Saper.Model
 
         public Bomb(int x, int y)
         {
-            coordinates = new Coordinate();
-            coordinates.X = x;
-            coordinates.Y = y;
+            coordinates = new Coordinate(x, y);
         }
     }
 }
