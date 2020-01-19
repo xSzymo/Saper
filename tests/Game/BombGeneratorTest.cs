@@ -32,6 +32,9 @@ public class BombGeneratorTest
 
         Assert.NotNull(ex);
     }
+    // B B B
+    // X B B
+    // X B X
 
     [Fact]
     public void GeneratorDoesNotGenerateBombsWhichAreSurroundedByOtherBombs()
@@ -39,7 +42,7 @@ public class BombGeneratorTest
         int nrOfBombs = 8, width = 3, height = 3;
         BombGenerator bombGenerator = new BombGenerator();
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 2; i++)
         {
             List<Bomb> bombs = bombGenerator.GenerateBombs(nrOfBombs, width, height);
             Assert.False(IsAnyBombSurroundedByOtherBombs(bombs, width, height));
@@ -71,7 +74,7 @@ public class BombGeneratorTest
     {
         if (x < 0 || y < 0)
             return true;
-        return x > width || y > height;
+        return x >= width || y >= height;
     }
 
     private static bool DoesAnyBombHasGivenCoordinates(List<Bomb> bombs, int x, int y)
