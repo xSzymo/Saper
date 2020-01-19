@@ -25,16 +25,13 @@ public class BombGeneratorTest
     [InlineData(5, 2, 2)]
     [InlineData(2, 1, 1)]
     public void GeneratorThrowsExceptionWhenMapIsTooSmallForAllBombs(int nrOfBombs, int width, int height)
-    {   
+    {
         BombGenerator bombGenerator = new BombGenerator();
 
         Exception ex = Assert.Throws<Exception>(() => bombGenerator.GenerateBombs(nrOfBombs, width, height));
 
         Assert.NotNull(ex);
     }
-    // B B B
-    // X B B
-    // X B X
 
     [Fact]
     public void GeneratorDoesNotGenerateBombsWhichAreSurroundedByOtherBombs()

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Saper.Model;
+using Saper.Model.Comparator;
 
 namespace Saper.Game
 {
@@ -14,7 +14,7 @@ namespace Saper.Game
         {
             if (size >= height * width)
                 throw new Exception("Unable to generate - too many bombs");
-                
+
             Random random = new Random();
             HashSet<Bomb> bombs;
             int index = 0;
@@ -74,19 +74,6 @@ namespace Saper.Game
         private bool DoesAnyBombHasGivenCoordinates(List<Bomb> bombs, int x, int y)
         {
             return bombs.Any(bm => bm.coordinates.X == x && bm.coordinates.Y == y);
-        }
-
-        private class BombComparator : IEqualityComparer<Bomb>
-        {
-            public bool Equals(Bomb bomb, Bomb bomb1)
-            {
-                return bomb.coordinates.X == bomb1.coordinates.X && bomb.coordinates.Y == bomb1.coordinates.Y;
-            }
-
-            public int GetHashCode(Bomb obj)
-            {
-                return obj.coordinates.X * 17 * obj.coordinates.Y;
-            }
         }
     }
 }
