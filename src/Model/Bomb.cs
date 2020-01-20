@@ -1,6 +1,6 @@
 namespace Saper.Model
 {
-    class Bomb
+    public class Bomb
     {
         public Coordinate coordinates { get; set; }
 
