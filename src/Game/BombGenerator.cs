@@ -50,8 +50,8 @@ namespace Saper.Game
 
         private bool IsBombSurroundedByOtherBombs(List<Bomb> bombs, Bomb currentBomb, int width, int height)
         {
-            int x = currentBomb.coordinates.X;
-            int y = currentBomb.coordinates.Y;
+            int x = currentBomb.Coordinates.X;
+            int y = currentBomb.Coordinates.Y;
             List<Coordinate> coordinatesAroundCurrentBomb = new List<Coordinate> {
                 new Coordinate(x+1, y), new Coordinate(x, y-1), new Coordinate(x+1, y+1), new Coordinate(x-1, y+1),
                 new Coordinate(x-1, y), new Coordinate(x, y+1), new Coordinate(x+1, y-1), new Coordinate(x-1, y-1)};
@@ -73,7 +73,7 @@ namespace Saper.Game
 
         private bool DoesAnyBombHasGivenCoordinates(List<Bomb> bombs, int x, int y)
         {
-            return bombs.Any(bm => bm.coordinates.X == x && bm.coordinates.Y == y);
+            return bombs.Any(bm => bm.Coordinates.X == x && bm.Coordinates.Y == y);
         }
     }
 }

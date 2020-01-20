@@ -2,6 +2,12 @@ namespace Saper.Model
 {
     public class Square
     {
+        public Square(int nr, int x, int y)
+        {
+            this.Nr = nr;
+            Coordinates = new Coordinate(x, y);
+        }
+
         public Coordinate Coordinates { get; set; }
 
         /*
