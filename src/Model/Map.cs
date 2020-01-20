@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Saper.Model
 {
@@ -13,6 +14,13 @@ namespace Saper.Model
             Squares = new List<Square>();
             this.Width = width;
             this.Height = height;
+        }
+
+        public Map(Map map)
+        {
+            this.Width = map.Width;
+            this.Height = map.Height;
+            this.Squares = map.Squares.Select(square => new Square(square)).ToList();
         }
     }
 }

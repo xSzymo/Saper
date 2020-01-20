@@ -7,6 +7,12 @@ namespace Saper.Model
             this.Nr = nr;
             Coordinates = new Coordinate(x, y);
         }
+        
+        public Square(Square square)
+        {
+            this.Nr = square.Nr;
+            Coordinates = new Coordinate(square.Coordinates.X, square.Coordinates.Y);
+        }
 
         public Coordinate Coordinates { get; set; }
 
