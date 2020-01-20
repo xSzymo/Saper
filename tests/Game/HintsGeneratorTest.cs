@@ -8,7 +8,7 @@ public class HintsGeneratorTest
     public void Map3X3WithTwoBombsCreatedGets4Hints()
     {
         HintsGenerator hintsGenerator = new HintsGenerator();
-        Map createdMap = new Map(3, 3);
+        Map createdMap = new Map(3, 3, 2);
 
         createdMap.Squares.Add(new Square(-1, 0, 0));
         createdMap.Squares.Add(new Square(-1, 1, 0));

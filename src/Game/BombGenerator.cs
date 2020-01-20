@@ -6,13 +6,13 @@ using Saper.Model.Comparator;
 
 namespace Saper.Game
 {
-    class BombGenerator
+    public class BombGenerator
     {
         private static int MAX_TRIES = 100000; //A Kind of Magic
 
-        public List<Bomb> GenerateBombs(int size, int height, int width)
+        public Map GenerateBombs(Map map)
         {
-            if (size >= height * width)
+            if (map.BombsAmount >= map.Height * map.Width)
                 throw new Exception("Unable to generate - too many bombs");
 
             Random random = new Random();
@@ -23,19 +23,30 @@ namespace Saper.Game
             {
                 bombs = new HashSet<Bomb>(new BombComparator());
 
-                for (int i = 0; i < size; i++)
+                for (int i = 0; i < map.BombsAmount; i++)
                 {
-                    int x = random.Next(0, width);
-                    int y = random.Next(0, height);
+                    int x = random.Next(0, map.Width);
+                    int y = random.Next(0, map.Height);
 
                     bombs.Add(new Bomb(x, y));
                 }
 
                 if (index++ >= MAX_TRIES)
                     throw new Exception("Unable to generate");
-            } while (!isCorrect(bombs, size, width, height));
+            } while (!isCorrect(bombs, map.BombsAmount, map.Width, map.Height));
 
-            return bombs.ToList();
+            return GetMapWithGeneratedBombs(map, bombs.ToList());
+        }
+
+        private Map GetMapWithGeneratedBombs(Map givenMap, List<Bomb> bombs)
+        {
+            Map map = new Map(givenMap);
+            for (int y = 0; y < map.Height; y++)
+                for (int x = 0; x < map.Width; x++)
+                    if (DoesAnyBombHasGivenCoordinates(bombs, x, y))
+                        map.Squares.Find(bm => bm.Coordinates.X == x && bm.Coordinates.Y == y).Nr = -1;
+
+            return map;
         }
 
         private bool isCorrect(HashSet<Bomb> bombs, int size, int width, int height)
